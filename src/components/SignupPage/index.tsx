@@ -4,6 +4,10 @@ import React, { useEffect } from 'react'
 import { SignupParams } from '@/types/zodTypes'
 import { onSignupRequest } from '@/libs/onSignupRequest'
 import Appbar from '../AppBar'
+import { useSession } from 'next-auth/react'
+interface USERDataResponse {
+  username: string | null | undefined
+}
 
 export default function SignUp() {
   const [user, setUser] = React.useState<SignupParams>({
@@ -11,6 +15,11 @@ export default function SignUp() {
     password: ''
   })
   const [buttonDisabled, setbuttonDisabled] = React.useState(false)
+  const { data } = useSession()
+  const userSession: USERDataResponse = {
+    username: data?.user.username || data?.user.email
+  }
+  console.log(userSession)
 
   useEffect(() => {
     if (user.username.length > 0 && user.password.length > 0) {
@@ -22,7 +31,7 @@ export default function SignUp() {
 
   return (
     <>
-      <Appbar />
+      <Appbar userSession={userSession} />
 
       <div className="signup-container flex justify-center min-h-screen ">
         <div className="mt-[100px] flex items-center flex-col">

@@ -10,7 +10,7 @@ import React, { useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { signOut } from 'next-auth/react'
 
-function Appbar({ userDataResponse }: any) {
+function Appbar({ userSession }: any) {
   const router = useRouter()
   const setUser = useSetRecoilState(userState)
   const userLoading: boolean = useRecoilValue(isUserLoading)
@@ -32,8 +32,8 @@ function Appbar({ userDataResponse }: any) {
   // }
 
   useEffect(() => {
-    setUser({ isLoading: false, userEmail: userDataResponse?.username })
-  }, [])
+    setUser({ isLoading: false, userEmail: userSession?.username })
+  }, [userSession])
 
   async function logoutRequest() {
     try {
@@ -72,6 +72,14 @@ function Appbar({ userDataResponse }: any) {
               {userEmail.split('@')[0].toUpperCase()}
             </span>{' '}
           </h2>
+          <button
+            className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow ml-[20px]"
+            onClick={() => {
+              router.push('/addcourses')
+            }}
+          >
+            Add course
+          </button>
           <button
             className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mx-[20px]"
             onClick={() => {

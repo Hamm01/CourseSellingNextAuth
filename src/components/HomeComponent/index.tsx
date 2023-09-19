@@ -2,10 +2,10 @@
 import Appbar from '../AppBar'
 import LandingPage from '../LandingPage'
 
-function HomeComponent({ userDataResponse }: any) {
+function HomeComponent({ userSession }: any) {
   return (
     <>
-      <Appbar userDataResponse={userDataResponse} />
+      <Appbar userSession={userSession} />
       <LandingPage />
     </>
   )

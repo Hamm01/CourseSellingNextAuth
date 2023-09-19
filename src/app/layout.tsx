@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 import Provider from '@/components/provider'
 import { Toaster } from 'react-hot-toast'
+
 export default function RootLayout({
   children
 }: {

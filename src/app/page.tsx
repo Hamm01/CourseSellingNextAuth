@@ -7,10 +7,10 @@ interface USERDataResponse {
 export default async function Home() {
   // const userDataResponse = await meRequest()
   const session = await meRequestNextAuth()
-  const userDataResponse: USERDataResponse = {
+  const userSession: USERDataResponse = {
     username: session?.user.username || session?.user.email
   }
   console.log('session ', session)
 
-  return <HomeComponent userDataResponse={userDataResponse} />
+  return <HomeComponent userSession={userSession} />
 }
