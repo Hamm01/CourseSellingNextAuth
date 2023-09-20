@@ -8,7 +8,7 @@ export function middleware(request: NextRequest) {
   const ispublicPath = path === '/signin' || path === '/signup'
   let token = ''
 
-  if (process.env.NODE_ENV === 'production') {
+  if (process.env.NODE_ENV === 'development') {
     token =
       request.cookies.get(`${process.env.NEXTAUTH_SESSION_COOKIE_DEV}`)
         ?.value || ''
