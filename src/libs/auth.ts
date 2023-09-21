@@ -29,7 +29,6 @@ export const authOptions: NextAuthOptions = {
         password: { label: 'Password', type: 'password' }
       },
       async authorize(credentials) {
-        console.log(credentials)
         if (!credentials?.username || !credentials?.password) {
           return null
         }
@@ -39,7 +38,7 @@ export const authOptions: NextAuthOptions = {
             username: credentials.username
           }
         })
-        console.log(existingUser)
+
         if (!existingUser) {
           return null
         }
@@ -50,7 +49,6 @@ export const authOptions: NextAuthOptions = {
           credentials.password,
           existingUser.password
         )
-        console.log(passwordMatch)
 
         if (!passwordMatch) {
           return null
@@ -66,8 +64,6 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user }) {
-      console.log('token : ', token)
-      console.log('user : ', user)
       if (user) {
         return {
           ...token,

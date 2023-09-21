@@ -10,7 +10,6 @@ export default async function Home() {
   const userSession: USERDataResponse = {
     username: session?.user.username || session?.user.email
   }
-  console.log('session ', session)
 
   return <HomeComponent userSession={userSession} />
 }

@@ -7,7 +7,7 @@ import { authOptions } from '@/libs/auth'
 export async function POST(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions)
-    console.log(session)
+
     if (!session) {
       return NextResponse.json({ msg: 'User Login Error!' }, { status: 401 })
     }

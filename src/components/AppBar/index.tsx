@@ -41,11 +41,10 @@ function Appbar({ userSession }: any) {
         isLoading: false,
         userEmail: null
       })
-      signOut({ redirect: false })
+      const data = await signOut({ redirect: false, callbackUrl: '/signin' })
       console.log('Logout Succesful')
       toast.success('Logout succesful')
-      router.refresh()
-      router.push('/signin')
+      router.push(data.url)
     } catch (error: any) {
       console.log('Error occuerd: ' + error.message)
     }
