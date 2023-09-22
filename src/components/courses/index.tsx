@@ -34,14 +34,17 @@ export function Courses() {
   return (
     <>
       <Appbar userSession={userSession} />
-      <div className="courses-container grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-col-1 gap-4 p-3 ">
-        {courses.length !== 0 ? (
-          courses.map(course => {
-            return <Coursecomponent key={course.id} {...course} />
-          })
-        ) : (
-          <Loading />
-        )}
+      <div className="bg-gray-100 w-full mx-auto p-4">
+        <h1 className="text-2xl font-semibold mb-4 text-center">Our Courses</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-2 ">
+          {courses.length !== 0 ? (
+            courses.map(course => {
+              return <Coursecomponent key={course.id} {...course} />
+            })
+          ) : (
+            <Loading />
+          )}
+        </div>
       </div>
     </>
   )
@@ -54,25 +57,18 @@ function Loading() {
 export function Coursecomponent(props: CourseType) {
   const { title, description, price, imageLink } = props
   return (
-    <div className="shadow-lg rounded-md border-2 py-6 px-3">
-      <h3
-        className=" text-xl antialiased  font-semibold hover:font-bold"
+    <div className="bg-white rounded-lg p-4 shadow-md">
+      <img src={imageLink} className="w-full h-52 object-cover rounded" />
+      <h2
+        className="text-lg font-semibold mt-2"
         style={{ marginBottom: 5, textAlign: 'center' }}
       >
         {title}
-      </h3>
-      <h5 style={{ marginBottom: 5, textAlign: 'center' }}>{description}</h5>
-      <img src={imageLink} style={{ width: '100%', height: '70%' }} />
+      </h2>
+      <p className="text-gray-600 mt-2">{description}</p>
 
-      <h5 style={{ marginBottom: 5, textAlign: 'center' }}>${price}</h5>
-      <button
-        className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-bold rounded-lg text-sm px-5 py-2.5  dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 w-full"
-        style={{
-          alignSelf: 'center',
-          marginTop: 5,
-          marginBottom: 5
-        }}
-      >
+      <p className="text-green-600 font-semibold mt-2">${price}</p>
+      <button className="bg-blue-500 text-white px-4 py-2 mt-2 rounded-md hover:bg-blue-600">
         Edit
       </button>
     </div>
