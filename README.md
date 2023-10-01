@@ -1,4 +1,4 @@
-## Course Selling Website ~ Assignment Week-11
+## Course Selling Application
 
 ### Milestone -3 done
 
